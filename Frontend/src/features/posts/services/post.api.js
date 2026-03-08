@@ -14,3 +14,19 @@ export async function getFeed() {
         throw err
     }
 }
+
+export async function createPost(imageFile,caption){
+
+    const formData = new FormData()
+
+    formData.append("image",imageFile)
+    formData.append("caption",caption)
+
+    try{
+        const res = await api.post("/create", formData)
+        return res.data
+    }
+    catch(err){
+        throw err
+    }
+}

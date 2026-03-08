@@ -1,0 +1,29 @@
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+    
+
+    .navbar-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        .nav-icons {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 2rem;
+            width: 100%;
+
+        }
+        .nav-icons svg {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+    }
+}

@@ -34,10 +34,13 @@ async function registerController(req, res) {
 
     res.status(200).json({
         message: "User created successfully",
-        username: user.username,
-        email: user.email,
-        bio: user.bio,
-        profileImg: user.profileImg
+        user: {
+            _id: user._id,
+            username: user.username,
+            email: user.email,
+            bio: user.bio,
+            profileImg: user.profileImg
+        }
     })
 }
 
@@ -86,11 +89,13 @@ async function loginController(req, res) {
 
         return res.status(200).json({
             message: "user Logged in successfully",
-            username: user.username,
-            email: user.email,
-            bio: user.bio,
-            profileImg: user.profileImg,
-            userId:user._id
+            user: {
+                _id: user._id,
+                username: user.username,
+                email: user.email,
+                bio: user.bio,
+                profileImg: user.profileImg
+            }
         })
     } catch (error) {
         console.error("Login Error:", error);
@@ -104,7 +109,7 @@ async function loginController(req, res) {
 
 async function getmeController(req, res) {
 
-    const user = await userModel.findById(req.userId)
+    const user = await userModel.findById(req.user.id)
 
     if (!user) {
         return res.status(404).json({
@@ -113,10 +118,13 @@ async function getmeController(req, res) {
     }
 
     res.status(200).json({
-        username: user.username,
-        email: user.email,
-        bio: user.bio,
-        profileImg: user.profileImg
+        user: {
+            _id: user._id,
+            username: user.username,
+            email: user.email,
+            bio: user.bio,
+            profileImg: user.profileImg
+        }
     })
 }
 

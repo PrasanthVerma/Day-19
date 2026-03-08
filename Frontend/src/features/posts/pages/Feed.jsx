@@ -3,11 +3,14 @@ import "../styles/feed.scss"
 import Posts from "../components/Posts"
 import { usePost } from "../hooks/usePost"
 import { useEffect } from "react"
-
+import Navbar from "../../shared/components/Navbar"
+import { useAuth } from "../../auth/hooks/useAuth"
 
 const Feed = () => {
 
     const { feed, handleGetFeed, loading } = usePost()
+    const {user} = useAuth()
+    // console.log({user})
 
     useEffect(() => {
         handleGetFeed()
@@ -27,6 +30,7 @@ const Feed = () => {
                     })
                 }
             </section>
+                <Navbar user={user} />
         </main>
     )
 }

@@ -25,11 +25,14 @@ async function createPostController(req, res) {
     // use the correct url property returned by ImageKit
     const imageURL = file.url || file.filePath || file.imageURL
 
-    const post = await postModel.create({
+    const newPost = await postModel.create({
         caption: req.body.caption,
         imageURL,
         user: req.user.id
     })
+
+    const post = await postModel.findById(newPost._id).populate("user").lean()
+    post.isLiked = false
 
     res.status(200).json({
         message: "Post created",
